@@ -1,19 +1,19 @@
-/* 
+/*
 Programm zur Ausgabe eines Dreiecks.
 Das Spielfeld ist 9 Zeichen breit
 
  012345678
-0    *    
-1   ***   
-2  *****  
-3 ******* 
+0    *
+1   ***
+2  *****
+3 *******
 4*********
 5
 6
 7
 8
 
-    *    
+    *
    ***
   *****
  *******
@@ -25,41 +25,37 @@ Das Spielfeld ist 9 Zeichen breit
 #include <stdio.h>
 #include <stdlib.h>
 
-int leerzeichen_counter = 4;
-int sterne_counter = 1;
-
-void befueller() {
+void zeilen_schreiber(int anzahl_auszugebender_leerzeichen_vorne, int anzahl_auszugebender_sterne)
+{
     char leerzeichen = ' ';
     char stern = '*';
 
-
-    while (leerzeichen_counter > 0)
+    for (int i = anzahl_auszugebender_leerzeichen_vorne; i > 0; i--)
     {
         printf("%c", leerzeichen);
-        leerzeichen_counter--;
     }
 
-    while (sterne_counter > 0)
+    for (int i = anzahl_auszugebender_sterne; i > 0; i--)
     {
         printf("%c", stern);
-        sterne_counter--;
     }
-    
-
+    printf("\n");
 }
 
-void new_line() {
-leerzeichen_counter--;
-sterne_counter = sterne_counter + 2;
-printf("\n");
-
+void prepare_next_line(int *p_anzahl_auszugebender_leerzeichen, int *p_anzahl_auszugebender_sterne)
+{
+    *p_anzahl_auszugebender_leerzeichen = *p_anzahl_auszugebender_leerzeichen - 1;
+    *p_anzahl_auszugebender_sterne = *p_anzahl_auszugebender_sterne + 2;
 }
 
-void main (void) {
+void main(void)
+{
+    int anzahl_auszugebender_leerzeichen_vorne = 4;
+    int anzahl_auszugebender_sterne = 1;
 
-    for (int zeile = 0; zeile < 5; zeile++) {
-        befueller();
-        new_line();
-
+    for (int zeile = 0; zeile < 5; zeile++)
+    {
+        zeilen_schreiber(anzahl_auszugebender_leerzeichen_vorne, anzahl_auszugebender_sterne);
+        prepare_next_line(&anzahl_auszugebender_leerzeichen_vorne, &anzahl_auszugebender_sterne);
     }
 }
