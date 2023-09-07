@@ -29,12 +29,29 @@ int leerzeichen_counter = 4;
 int sterne_counter = 1;
 
 void befueller() {
+    char leerzeichen = ' ';
+    char stern = '*';
+
+
+    while (leerzeichen_counter > 0)
+    {
+        printf("%c", leerzeichen);
+        leerzeichen_counter--;
+    }
+
+    while (sterne_counter > 0)
+    {
+        printf("%c", stern);
+        sterne_counter--;
+    }
+    
 
 }
 
 void new_line() {
 leerzeichen_counter--;
 sterne_counter = sterne_counter + 2;
+printf("\n");
 
 }
 
