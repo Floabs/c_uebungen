@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 struct Teppich {
-    int teppich_laenge;
+	int teppich_laenge;
 	int teppich_breite;
 	int anzahl_reihen_teppich_rand;
 	int anzahl_reihen_teppich_muster;
@@ -16,16 +16,16 @@ int main() {
 
 	Teppich teppich;
 
-	printf("Bitte gib die L√§nge und Breite deines Teppichs in ganzen Zahlen in dem Format: L√§nge Breite ein: \n");
+	printf("Bitte gib die L‰nge und Breite deines Teppichs in ganzen Zahlen in dem Format: L‰nge Breite ein: \n");
 	scanf("%d %d", &teppich.teppich_laenge, &teppich_breite);
-	printf("Und wie dick h√§ttest du den Rand gerne?: \n");
+	printf("Und wie dick h‰ttest du den Rand gerne?: \n");
 	scanf("%d", &anzahl_reihen_teppich_rand);
 	anzahl_reihen_teppich_muster = teppich_laenge - (2 * anzahl_reihen_teppich_rand);
-	printf("Und wie dick h√§ttest du dein Muster gerne pro Seite?: \n");
+	printf("Und wie dick h‰ttest du dein Muster gerne pro Seite?: \n");
 	scanf("%d", &dicke_teppich_muster);
 	leerzeichen_teppich = teppich_breite - (2 * dicke_teppich_muster);
 	if (leerzeichen_teppich < 0) {
-		printf("Bitte gib die Breite des Musters pro seite erneut ein, denn sie √úberschreitet die Gesamtbreite %d deines Teppichs: \n", teppich_breite);
+		printf("Bitte gib die Breite des Musters pro seite erneut ein, denn sie ‹berschreitet die Gesamtbreite %d deines Teppichs: \n", teppich_breite);
 		scanf("%d", &dicke_teppich_muster);
 		leerzeichen_teppich = teppich_breite - (2 * dicke_teppich_muster);
 	}
