@@ -14,4 +14,7 @@ Person createPersons() {
 }
 int main() {
     Person person = createPersons();
-    printf("Hello %s\n", person.last_name);}
+    printf("Hello %s\n", person.last_name);
+}
+
+
