@@ -1,24 +1,27 @@
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
 #include "teppich.h"
+
 #define TEPPICH_CHAR '*'
 
 
-char findeZeichenAnPosition(Teppich teppich, int zeile, int spalte) {
+char findeZeichenAnPosition(Teppich* p_teppich, int zeile, int spalte) {
 	char ch = '.';
-	if (zeile < teppich.anzahl_reihen_teppich_rand) {
+	if (zeile < p_teppich -> anzahl_reihen_teppich_rand) {
 		ch = TEPPICH_CHAR;
 	}
-	if (spalte < teppich.dicke_teppich_muster)
+	if (spalte < p_teppich -> dicke_teppich_muster)
 	{
 		ch = TEPPICH_CHAR;
 	}
-	if (spalte >= (teppich.breite - teppich.dicke_teppich_muster))
+	if (spalte >= (p_teppich -> breite - p_teppich -> dicke_teppich_muster))
 	{
 		ch = TEPPICH_CHAR;
 	}
-	if (zeile >= teppich.laenge - teppich.anzahl_reihen_teppich_rand)
+	if (zeile >= p_teppich -> laenge - p_teppich -> anzahl_reihen_teppich_rand)
 	{
 		ch = TEPPICH_CHAR;
 	}
@@ -26,10 +29,10 @@ char findeZeichenAnPosition(Teppich teppich, int zeile, int spalte) {
 	return ch;
 }
 
-void zeichne_teppich2(Teppich teppich) {
-	for(int zeile = 0; zeile < teppich.laenge; zeile++) {
-		for(int spalte = 0; spalte < teppich.breite; spalte++) {
-			char ch = findeZeichenAnPosition(teppich, zeile, spalte);
+void zeichne_teppich2(Teppich* p_teppich) {
+	for(int zeile = 0; zeile < p_teppich -> laenge; zeile++) {
+		for(int spalte = 0; spalte < p_teppich -> breite; spalte++) {
+			char ch = findeZeichenAnPosition(p_teppich, zeile, spalte);
 			printf("%c", ch);
 		}
 		printf("\n");
@@ -39,9 +42,10 @@ void zeichne_teppich2(Teppich teppich) {
 int main() 
 {
 
-	Teppich teppich = teppich_default();
-	zeichne_teppich2(teppich);
-
+	//Teppich teppich = teppich_default();
+	Teppich* p_teppich = new_teppich_default();
+	zeichne_teppich2(p_teppich);
+	free(p_teppich);
 	return 0;
 }
 

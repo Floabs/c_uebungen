@@ -6,14 +6,14 @@
 #define DEFAULT_TEPPICH_LENGTH 18
 #define DEFAULT_TEPPICH_BREITE 9;
 
-Teppich teppich_default()
+Teppich* new_teppich_default()
 {
-	Teppich teppich;
-	teppich.laenge = DEFAULT_TEPPICH_LENGTH;
-	teppich.breite = DEFAULT_TEPPICH_BREITE;
-	teppich.anzahl_reihen_teppich_rand = 2;
-	teppich.dicke_teppich_muster = 3;
-	return teppich;
+	Teppich* p_teppich = calloc(1, sizeof(Teppich));
+	p_teppich ->laenge = DEFAULT_TEPPICH_LENGTH;
+	p_teppich ->breite = DEFAULT_TEPPICH_BREITE;
+	p_teppich ->anzahl_reihen_teppich_rand = 2;
+	p_teppich ->dicke_teppich_muster = 3;
+	return p_teppich;
 }
 int anzahl_reihen_teppich_muster(Teppich teppich) {
 	return teppich.laenge - 2 * teppich.anzahl_reihen_teppich_rand;

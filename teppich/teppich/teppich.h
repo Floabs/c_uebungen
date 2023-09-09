@@ -7,4 +7,4 @@ struct Teppich {
 };
 typedef struct Teppich Teppich;
 void zeichne_teppich(Teppich teppich);
-Teppich teppich_default();
+Teppich* new_teppich_default();
