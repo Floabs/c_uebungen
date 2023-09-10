@@ -13,15 +13,11 @@ struct Node {
 	Node* next;
 };
 
-Node* new_node(const char *first_name, Node* previous_node)
+Node* new_node(const char *first_name)
 {
 	Node* p_node = calloc(1, sizeof(Node));
 	p_node->next = NULL;
 	strncpy(p_node->person.first_name, first_name, MAX_STRING_LENGTH);
-	if (previous_node != NULL) {
-	 
-		previous_node->next = p_node;
-	}
 	return p_node;
 	//print_current_person(p_node->person, akutelle_anzahl_personen_in_liste, maximale_anzahl_personen);
 }
@@ -74,8 +70,9 @@ int main() {
 
 
 	Node* starting_address = NULL;
-	Node* node1 = new_node("John", starting_address);
-	Node* node2 = new_node("Max", node1);
+	Node* node1 = new_node("John");
+	Node* node2 = new_node("Max");
+	node1->next = node2;
 	print_list2(node1);
 	free(node2), node2 = NULL;
 	free(node1), node1 = NULL;
