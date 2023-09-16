@@ -4,7 +4,7 @@
 #include <math.h>
 #include "structs.h"
 
-Produkt private_produkt_befueller(const char* name, float brutto_stueckpreis, int packungsgroesse_1, int packungsgroesse_2) {
+Produkt private_produkt_befueller(const char* name, float brutto_stueckpreis, float packungsgroesse_1, float packungsgroesse_2) {
     Produkt produkt;
     produkt.bedarf = 0;
     produkt.name = name;
