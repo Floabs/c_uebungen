@@ -15,27 +15,6 @@ Produkt private_produkt_befueller(const char* name, float brutto_stueckpreis, in
     
 }
 
-//Produkt eier_befueller() {
-  //  return private_produkt_befueller("Eier", 0.3, 6, 10);
-// }
-
-Produkt reis_befueller() {
-    return private_produkt_befueller("Reis", 1.93, 1, 1);
-}
-
-Produkt hummus_befueller() {
-    return private_produkt_befueller("Hummus", 4.98, 0.25, 0.25);
-}
-
-Produkt vollkorntortillia_befueller()
-{
-    return private_produkt_befueller("Vollkorntortillia", 6.41, 0.32, 0.32);
-}
-
-Produkt bierflaschen_befueller() {
-    return private_produkt_befueller("Bierflasche", 0.94, 1, 1);
-}
-
 Produkt brutto_netto_gesamt(Produkt produkt) {
     produkt.netto_stueck_preis = produkt.brutto_stueck_preis * 1.2;
     produkt.brutto_gesamt_preis = produkt.bedarf * produkt.brutto_stueck_preis;
@@ -46,16 +25,16 @@ Produkt brutto_netto_gesamt(Produkt produkt) {
 void listen_befueller(Produkt gegenstands_liste[MAX_LENGTH])
 {
     gegenstands_liste[0] = private_produkt_befueller("Eier", 0.3, 6, 10);
-    gegenstands_liste[1] = reis_befueller();
-    gegenstands_liste[2] = hummus_befueller();
-    gegenstands_liste[3] = vollkorntortillia_befueller();
-    gegenstands_liste[4] = bierflaschen_befueller();
+    gegenstands_liste[1] = private_produkt_befueller("Reis", 1.93, 1, 1);
+    gegenstands_liste[2] = private_produkt_befueller("Hummus", 4.98, 0.25, 0.25);
+    gegenstands_liste[3] = private_produkt_befueller("Vollkorntortillia", 6.41, 0.32, 0.32);
+    gegenstands_liste[4] = private_produkt_befueller("Bierflasche", 0.94, 1, 1);
 }
 
 float eingabewert(Produkt produkt) {
     float rest, kleinstes_vielfaches, bestellte_verpackungen = 0;
     char runder = '0';
-    printf("Bitte gib die Anzahl/KG an %s ein, die du kaufen möchtest ein : ", produkt.name);
+    printf("Bitte gib die Anzahl/KG an %s ein, die du kaufen mï¿½chtest ein : ", produkt.name);
     scanf("%f", &bestellte_verpackungen);
     rest = fmodf(bestellte_verpackungen, produkt.packungsgroesse[0]);
     kleinstes_vielfaches = rest;
