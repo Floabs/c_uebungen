@@ -14,5 +14,6 @@ struct Produkt {
 typedef struct Produkt Produkt;
 
 Produkt brutto_netto_gesamt(Produkt produkt);
-void listen_befueller(Produkt gegenstands_liste[MAX_LENGTH]);
+int listen_befueller(Produkt gegenstands_liste[MAX_LENGTH]);
 float eingabewert(Produkt produkt);
+void delete_produkt(Produkt *produkt);

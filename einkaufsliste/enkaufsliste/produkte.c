@@ -1,13 +1,17 @@
 #define _CRT_SECURE_NO_WARNINGS
+#define _CRTDBG_MAP_ALLOC
+#include <crtdbg.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <string.h>
 #include "structs.h"
 
-Produkt private_produkt_befueller(const char* name, float brutto_stueckpreis, float packungsgroesse_1, float packungsgroesse_2) {
+static Produkt private_produkt_befueller(const char* name, float brutto_stueckpreis, float packungsgroesse_1, float packungsgroesse_2) {
     Produkt produkt;
     produkt.bedarf = 0;
-    produkt.name = name;
+    produkt.name = malloc(strlen(name) + 1);
+    strcpy(produkt.name, name);
     produkt.brutto_stueck_preis = brutto_stueckpreis;
     produkt.packungsgroesse[0] = packungsgroesse_1;
     produkt.packungsgroesse[1] = packungsgroesse_2;
@@ -15,27 +19,36 @@ Produkt private_produkt_befueller(const char* name, float brutto_stueckpreis, fl
     
 }
 
-Produkt brutto_netto_gesamt(Produkt produkt) {
-    produkt.netto_stueck_preis = produkt.brutto_stueck_preis * 1.2;
+void delete_produkt(Produkt* produkt) {
+    free(produkt->name); produkt->name = NULL;
+}
+
+static Produkt brutto_netto_gesamt(Produkt produkt) {
+    produkt.netto_stueck_preis = produkt.brutto_stueck_preis * 1.2f;
     produkt.brutto_gesamt_preis = produkt.bedarf * produkt.brutto_stueck_preis;
-    produkt.netto_gesamt_preis = produkt.brutto_gesamt_preis * 1.2;
+    produkt.netto_gesamt_preis = produkt.brutto_gesamt_preis * 1.2f;
     return produkt;
 }
 
-void listen_befueller(Produkt gegenstands_liste[MAX_LENGTH])
+int listen_befueller(Produkt gegenstands_liste[MAX_LENGTH])
 {
-    gegenstands_liste[0] = private_produkt_befueller("Eier", 0.3, 6, 10);
-    gegenstands_liste[1] = private_produkt_befueller("Reis", 1.93, 1, 1);
-    gegenstands_liste[2] = private_produkt_befueller("Hummus", 4.98, 0.25, 0.25);
-    gegenstands_liste[3] = private_produkt_befueller("Vollkorntortillia", 6.41, 0.32, 0.32);
-    gegenstands_liste[4] = private_produkt_befueller("Bierflasche", 0.94, 1, 1);
+    //char* name = malloc(100);
+    char name[100];
+    strcpy(name, "Eier");
+    int produkt_counter = 0; 
+    gegenstands_liste[produkt_counter++] = private_produkt_befueller(name, 0.3f, 6, 10);
+    gegenstands_liste[produkt_counter++] = private_produkt_befueller("Reis", 1.93f, 1, 1);
+    gegenstands_liste[produkt_counter++] = private_produkt_befueller("Hummus", 4.98f, 0.25f, 0.25f);
+    gegenstands_liste[produkt_counter++] = private_produkt_befueller("Vollkorntortillia", 6.41f, 0.32f, 0.32f);
+    gegenstands_liste[produkt_counter++] = private_produkt_befueller("Bierflasche", 0.94f, 1, 1);
+    return produkt_counter;
 }
 
 float eingabewert(Produkt produkt) {
     float rest, kleinstes_vielfaches, bestellte_verpackungen = 0;
     char runder = '0';
     printf("Bitte gib die Anzahl/KG an %s ein, die du kaufen m�chtest ein : ", produkt.name);
-    scanf("%f", &bestellte_verpackungen);
+    int eingelesene_werte = scanf("%f", &bestellte_verpackungen);
     rest = fmodf(bestellte_verpackungen, produkt.packungsgroesse[0]);
     kleinstes_vielfaches = rest;
     if (rest != 0.0) {
