@@ -1,0 +1,26 @@
+
+@TOKEN={{props.response.body.setup-token}}
+
+###
+# @name props
+GET http://data.analytical.htb/api/session/properties
+Accept: application/json
+Content-Type: application/json
+
+###
+POST http://data.analytical.htb/api/session
+Content-Type: application/json
+Accept: application/json
+Authorization: {{TOKEN}}
+
+{
+"username":"test@test.at",
+"password":"password",
+"remember":true
+}
+
+###
+POST http://data.analytical.htb/api/setup/validate
+Content-Type: application/json
+Accept: application/json
+Authorization: {{TOKEN}}
