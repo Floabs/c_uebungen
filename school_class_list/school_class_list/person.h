@@ -1,16 +1,10 @@
 #pragma once
-/*
-typedef struct {
-	char first_name[40];
-	char last_name[40];
-	int year_of_birth;
-} Person;
-*/
-//typedef void (*person_print)(struct _Person*);
+
+
 struct _Person {
+	int year_of_birth;
 	char first_name[40];
 	char last_name[40];
-	int year_of_birth;
 	void (*print)(struct _Person*);
 };
 
